@@ -1,6 +1,9 @@
-FROM python:3.8
+FROM python:3.8-alpine
 
-RUN apt-get update
+RUN apk --no-cache add \
+    python3-dev \
+    gcc \
+    libc-dev
 RUN pip install --upgrade pip
 
 COPY src /src
