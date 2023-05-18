@@ -33,7 +33,7 @@ outputs:
     description: 'Jenkins job build status'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'olexandrd/build-jenkins-job:alpine'
   args:
     - ${{ inputs.jenkins-url}}
     - ${{ inputs.jenkins-token}}
