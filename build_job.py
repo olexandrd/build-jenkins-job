@@ -42,7 +42,7 @@ print(f"BUILD NUMBER: {build_number}")
 
 if JENKINS_WAIT_JOB == "no-wait" and build_number:
     print("Job status is : EXECUTED")
-    print("::set-output name=job_status::EXECUTED")
+    print("echo \"{job_status}=EXECUTED\" >> $GITHUB_OUTPUT")
     exit(0)
 
 # Get build status
@@ -50,8 +50,8 @@ while not (status := finder.exec(build_number)):
     time.sleep(1)
 
 print(f"Job status is : {status}")
-print(f"::set-output name=job_status::{status}")
-print(f"::set-output name=job_build_number::{build_number}")
+print(f"echo \"{job_status}={status}\" >> $GITHUB_OUTPUT")
+print(f"echo \"{job_build_number}={build_number}\" >> $GITHUB_OUTPUT")
 
 if status != 'SUCCESS':
     exit(1)
